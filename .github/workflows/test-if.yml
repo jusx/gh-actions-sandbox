@@ -10,10 +10,10 @@ on:
 jobs:
   init:
     name: Initialize workflow variables
-    id: vars
     runs-on: ubuntu-latest    
     shell: bash
     steps:
+      id: vars
       - run:|
         unset HAS_SECRET
         if [-n $SECRET]; then HAS_SECRET='true' ; fi
