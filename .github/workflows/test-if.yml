@@ -31,11 +31,9 @@ jobs:
   build:
     name: Testing if
     runs-on: ubuntu-latest
-    env:
-      ENV_NAME: ${{ secrets.CODECOV_TOKEN }}
     needs: [init]
-#    if: ${{ needs.init.outputs.output == 'true' }}
-    if: $ENV_NAME
+    if: ${{ needs.init.outputs.output == 'true' }}
+
     steps:
       - run: echo ${{ needs.init.outputs.do_codecov }}
       - run: echo $ENV_NAME
