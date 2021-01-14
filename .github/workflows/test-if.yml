@@ -17,17 +17,13 @@ jobs:
         id: vars
         shell: bash
         run: |
-          # staging directory
-          STAGING='_staging'
-          echo set-output name=STAGING::${STAGING}
-          echo ::set-output name=STAGING::${STAGING}
           # check for CODECOV_TOKEN availability (work-around for inaccessible 'secrets' object for 'if'; see <https://github.community/t5/GitHub-Actions/jobs-lt-job-id-gt-if-does-not-work-with-env-secrets/m-p/38549>)
           unset HAS_CODECOV_TOKEN
           if [ -n $CODECOV_TOKEN ]; then HAS_CODECOV_TOKEN='true' ; fi
           echo set-output name=HAS_CODECOV_TOKEN::${HAS_CODECOV_TOKEN}
           echo ::set-output name=HAS_CODECOV_TOKEN::${HAS_CODECOV_TOKEN}
         env:
-          CODECOV_TOKEN: "${{ secrets.CODECOV_TOKEN }}"
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 #       - name: init vars
 #         id: vars
 #         shell: bash        
@@ -38,4 +34,4 @@ jobs:
     needs: [init]
 #    if: ${{ needs.init.steps.vars.outputs.HAS_SECRET }}
     steps:
-      - run: echo ${{ needs.job1.outputs.output }}
+      - run: echo ${{ needs.init.outputs.output }}
