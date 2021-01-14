@@ -1,0 +1,17 @@
+name: Test If
+
+on:
+  push:
+    tags:
+      - '*'
+    branches:
+      - 'master'
+
+jobs:
+  build:
+    name: Testing if
+    if: ${{ secrets.TEST }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
