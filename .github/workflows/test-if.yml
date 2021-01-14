@@ -11,7 +11,7 @@ jobs:
   init:
     runs-on: ubuntu-latest   
     outputs:
-      output: ${{ steps.vars.outputs.test }} 
+      output: ${{ steps.vars.outputs.HAS_CODECOV_TOKEN }} 
     steps:
       - name: Initialize workflow variables
         id: vars
