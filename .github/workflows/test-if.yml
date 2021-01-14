@@ -11,7 +11,7 @@ jobs:
   init:
     runs-on: ubuntu-latest   
     outputs:
-      output: ${{ steps.vars.outputs.HAS_CODECOV_TOKEN }} 
+      do_codecov: ${{ steps.vars.outputs.HAS_CODECOV_TOKEN }} 
     steps:
       - name: Initialize workflow variables
         id: vars
@@ -34,7 +34,8 @@ jobs:
     env:
       ENV_NAME: ${{ secrets.CODECOV_TOKEN }}
     needs: [init]
-    if: ${{ needs.init.outputs.output == 'true' }}
+#    if: ${{ needs.init.outputs.output == 'true' }}
+    if: $ENV_NAME
     steps:
-      - run: echo ${{ needs.init.outputs.output }}
+      - run: echo ${{ needs.init.outputs.do_codecov }}
       - run: echo $ENV_NAME
