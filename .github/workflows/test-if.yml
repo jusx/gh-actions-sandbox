@@ -23,7 +23,7 @@ jobs:
           echo set-output name=HAS_CODECOV_TOKEN::${HAS_CODECOV_TOKEN}
           echo ::set-output name=HAS_CODECOV_TOKEN::${HAS_CODECOV_TOKEN}
         env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN_DNE }}
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 #       - name: init vars
 #         id: vars
 #         shell: bash        
@@ -31,7 +31,10 @@ jobs:
   build:
     name: Testing if
     runs-on: ubuntu-latest
+    env:
+      ENV_NAME: ${{ secrets.CODECOV_TOKEN }}
     needs: [init]
     if: ${{ needs.init.outputs.output == 'true' }}
     steps:
       - run: echo ${{ needs.init.outputs.output }}
+      - run: echo $ENV_NAME
