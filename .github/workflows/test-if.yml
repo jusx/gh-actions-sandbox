@@ -9,7 +9,9 @@ on:
 
 jobs:
   init:
-    runs-on: ubuntu-latest    
+    runs-on: ubuntu-latest   
+    outputs:
+      output: ${{ steps.vars.outputs.test }} 
     steps:
       - name: Initialize workflow variables
         id: vars
@@ -36,4 +38,4 @@ jobs:
     needs: [init]
 #    if: ${{ needs.init.steps.vars.outputs.HAS_SECRET }}
     steps:
-      - run: echo ${{ needs.init.steps.vars.outputs.HAS_CODECOV_TOKEN }}
+      - run: echo ${{ needs.job1.outputs.output }}
