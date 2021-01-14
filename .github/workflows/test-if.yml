@@ -23,7 +23,7 @@ jobs:
           echo set-output name=HAS_CODECOV_TOKEN::${HAS_CODECOV_TOKEN}
           echo ::set-output name=HAS_CODECOV_TOKEN::${HAS_CODECOV_TOKEN}
         env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN_DNE }}
 #       - name: init vars
 #         id: vars
 #         shell: bash        
