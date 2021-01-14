@@ -19,7 +19,7 @@ jobs:
         run: |
           # check for CODECOV_TOKEN availability (work-around for inaccessible 'secrets' object for 'if'; see <https://github.community/t5/GitHub-Actions/jobs-lt-job-id-gt-if-does-not-work-with-env-secrets/m-p/38549>)
           unset HAS_CODECOV_TOKEN
-          if [ -n "$CODECOV_TOKEN" ]; then HAS_CODECOV_TOKEN='true' ; fi
+          if [ -n "$CODECOV_TOKEN" ]; then HAS_CODECOV_TOKEN='true' else HAS_CODECOV_TOKEN='false' ; fi
           echo set-output name=HAS_CODECOV_TOKEN::${HAS_CODECOV_TOKEN}
           echo ::set-output name=HAS_CODECOV_TOKEN::${HAS_CODECOV_TOKEN}
         env:
